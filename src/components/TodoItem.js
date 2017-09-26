@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   Text,
   TouchableWithoutFeedback,
@@ -6,12 +7,9 @@ import {
   View,
   StyleSheet
 } from "react-native";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as actionCreators from "../actions";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
-class TodoItemComp extends Component {
+class TodoItem extends Component {
   _onToggle() {
     this.props.toggleTodo(this.props.todo);
   }
@@ -57,18 +55,6 @@ class TodoItemComp extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    todos: state.todoReducer.todos
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(actionCreators, dispatch);
-};
-
-const TodoItem = connect(mapStateToProps, mapDispatchToProps)(TodoItemComp);
-
 const styles = StyleSheet.create({
   todoItem: {
     backgroundColor: "#dfd",
@@ -97,5 +83,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5
   }
 });
+
+TodoItem.propTypes = {
+  toggleTodo: PropTypes.func.isRequired,
+  todo: PropTypes.object.isRequired,
+  removeTodo: PropTypes.func.isRequired
+};
 
 export default TodoItem;

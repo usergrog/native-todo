@@ -1,16 +1,6 @@
-import React, { Component } from "react";
-import {
-  Text,
-  FlatList,
-  View,
-  StyleSheet,
-  TextInput,
-  Button
-} from "react-native";
-import { connect } from "react-redux";
-import TodoItem from "../components/TodoItem";
-import * as actionCreators from "../actions";
-import { bindActionCreators } from "redux";
+import React, {Component} from "react";
+import {Button, FlatList, StyleSheet, Text, TextInput, View} from "react-native";
+import TodoItemContainer from "../containers/TodoItemContainer";
 
 class FirebaseTodoList extends Component {
   state = {
@@ -47,7 +37,7 @@ class FirebaseTodoList extends Component {
 
   renderRow({ item }) {
     console.log("item", item);
-    return <TodoItem todo={item} />;
+    return <TodoItemContainer todo={item} />;
   }
 
   renderList() {
