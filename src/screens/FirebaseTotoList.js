@@ -1,50 +1,27 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import {
+  Text,
+  FlatList,
+  View,
+  StyleSheet,
+  TextInput,
+  Button
+} from "react-native";
 import { connect } from "react-redux";
 import TodoItem from "../components/TodoItem";
 import * as actionCreators from "../actions";
 import { bindActionCreators } from "redux";
 
 class FirebaseTodoList extends Component {
+  state = {
+    todoTitle: ""
+  };
+
   constructor(props) {
     super(props);
     this.renderList = this.renderList.bind(this);
+    this.onPressAddTodo = this.onPressAddTodo.bind(this);
   }
-  componentWillMount() {
-    console.log("userId", this.props.userId);
-    if (
-      (this.props.todos === undefined || this.props.todos.length === 0) &&
-      this.props.userId !== ""
-    ) {
-      // this.props.fetchTodos()
-    }
-  }
-
-  handleSubmit = e => {
-    e.preventDefault();
-    if (this.refs.newTodoTitle.value) {
-      this.props.addTodo({
-        text: this.refs.newTodoTitle.value,
-        isFinished: false
-      });
-      this.refs.todosForm.reset();
-    } else {
-      this.props.showError("Please input title for todo");
-    }
-  };
-
-  allowDrop = event => {
-    event.preventDefault();
-  };
-
-  drop = (event, todoTarget) => {
-    event.preventDefault();
-    this.props.changePriority(todoTarget, this.daggedTodo);
-  };
-
-  dragStart = (event, todoSource) => {
-    this.daggedTodo = todoSource;
-  };
 
   renderLogin() {
     return (
@@ -54,10 +31,48 @@ class FirebaseTodoList extends Component {
     );
   }
 
+  onPressAddTodo() {
+    if (this.state.todoTitle) {
+      this.props.addTodo({
+        text: this.state.todoTitle,
+        isFinished: false
+      });
+      this.setState({ todoTitle: "" });
+    } else {
+      this.props.showError("Please input title for todo");
+    }
+  }
+
+  _keyExtractor = (item, index) => index;
+
+  renderRow({ item }) {
+    console.log("item", item);
+    return <TodoItem todo={item} />;
+  }
+
   renderList() {
     return (
       <View>
-        <Text>List here</Text>
+        <View style={styles.addTodoBox}>
+          <TextInput
+            style={styles.editText}
+            onChangeText={todoTitle => this.setState({ todoTitle })}
+            placeholder="Todo Title"
+            value={this.state.todoTitle}
+          />
+          <Button
+            onPress={this.onPressAddTodo}
+            style={styles.addTodoButton}
+            title="Add"
+            color="#841584"
+          />
+        </View>
+        <FlatList
+          style={styles.flatList}
+          data={this.props.todos}
+          keyExtractor={this._keyExtractor}
+          renderItem={this.renderRow}
+        />
       </View>
     );
   }
@@ -70,5 +85,25 @@ class FirebaseTodoList extends Component {
     }
   }
 }
+
+const styles = StyleSheet.create({
+  editText: {
+    width: 300,
+    padding: 4,
+    borderColor: "gray",
+    borderWidth: 1,
+    flex: 1
+  },
+  addTodoBox: {
+    maxHeight: 40,
+    minHeight: 40,
+    flexDirection: "row",
+    justifyContent: "center"
+  },
+  addTodoButton: {
+    flex: 1
+  },
+  flatList: {}
+});
 
 export default FirebaseTodoList;

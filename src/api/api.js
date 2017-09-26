@@ -6,10 +6,10 @@ const people = [
   { name: "Jason", age: 44 }
 ];
 
-export const getPeople = () => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      return resolve(people);
-    }, 3000);
-  });
-};
+// export const getPeople = () => {
+//   return new Promise(resolve => {
+//     setTimeout(() => {
+//       return resolve(people);
+//     }, 3000);
+//   });
+// };
