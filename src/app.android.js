@@ -1,11 +1,7 @@
-import React, { Component } from "react";
-import { AppRegistry, StyleSheet, Text, View } from "react-native";
-import { Provider } from "react-redux";
-import { store } from "./store";
-import LoginContainer from "./containers/LoginContainer";
-import About from "./screens/About";
-import { Navigation } from "react-native-navigation";
-import { registerScreens } from "./screens";
+import {Provider} from "react-redux";
+import {store} from "./store";
+import {Navigation} from "react-native-navigation";
+import {registerScreens} from "./screens";
 
 registerScreens(store, Provider);
 
