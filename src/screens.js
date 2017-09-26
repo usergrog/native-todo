@@ -1,19 +1,19 @@
 import { Navigation } from "react-native-navigation";
 
 import Drawer from "./screens/Drawer";
-import About from "./components/About";
-// import MoviesList from './modules/movies/MoviesList';
+import About from "./screens/About";
+import LoginContainer from "./containers/LoginContainer";
 // import Movie from './modules/movies/Movie';
 // import Search from './modules/movies/Search';
 
 export function registerScreens(store, Provider) {
+  Navigation.registerComponent(
+    "owntodo.Login",
+    () => LoginContainer,
+    store,
+    Provider
+  );
   Navigation.registerComponent("owntodo.About", () => About, store, Provider);
-  // Navigation.registerComponent(
-  //   "owntodo.Movies",
-  //   () => Movies,
-  //   store,
-  //   Provider
-  // );
   // Navigation.registerComponent(
   //   "movieapp.MoviesList",
   //   () => MoviesList,

@@ -3,7 +3,7 @@ import { AppRegistry, StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import LoginContainer from "./containers/LoginContainer";
-import About from "./components/About";
+import About from "./screens/About";
 import { Navigation } from "react-native-navigation";
 import { registerScreens } from "./screens";
 
@@ -27,8 +27,8 @@ const navigatorStyle = {
 
 Navigation.startSingleScreenApp({
   screen: {
-    screen: "owntodo.About",
-    title: "About",
+    screen: "owntodo.Login",
+    title: "Login",
     navigatorStyle,
     leftButtons: [
       {
