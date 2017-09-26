@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import { store } from "../../store";
+import { store } from "../store";
 import { successLogin } from "../actions/authActions";
 import { fetchGroups, fetchTodos } from "../actions/todoActions";
 
