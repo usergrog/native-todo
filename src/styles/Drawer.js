@@ -4,7 +4,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingLeft: 25,
-    justifyContent: "center",
+    paddingTop: 24,
+    justifyContent: "flex-start",
     backgroundColor: "#222a"
   },
   drawerList: {},
@@ -16,11 +17,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 23
   },
+  drawerListSubItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 23,
+    marginLeft: 10
+  },
   drawerListItemText: {
     color: "white",
     fontWeight: "bold",
-    fontSize: 23,
+    fontSize: 18,
     paddingLeft: 15,
+    flex: 1
+  },
+  drawerListSubItemText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+    paddingLeft: 20,
     flex: 1
   },
   linearGradient: {

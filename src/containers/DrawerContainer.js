@@ -5,7 +5,9 @@ import Drawer from "../screens/Drawer";
 
 const mapStateToProps = state => {
   return {
-    userId: state.authReducer.userId
+    userId: state.authReducer.userId,
+    groups: state.todoReducer.groups,
+    selectedGroup: state.todoReducer.selectedGroup
   };
 };
 
