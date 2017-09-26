@@ -27,8 +27,8 @@ const navigatorStyle = {
 
 Navigation.startSingleScreenApp({
   screen: {
-    screen: "owntodo.Login",
-    title: "Login",
+    screen: "owntodo.TodoList",
+    title: "TodoList",
     navigatorStyle,
     leftButtons: [
       {

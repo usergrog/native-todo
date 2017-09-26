@@ -47,7 +47,7 @@ const logout = () => {
   };
 };
 
-export const loginAndRedirect = (email, password, url) => {
+export const loginAndRedirect = (email, password) => {
   return dispatch => {
     dispatch(showProgress());
     return fire

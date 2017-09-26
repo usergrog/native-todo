@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Text, FlatList, View, StyleSheet } from "react-native";
 import * as globalStyles from "../styles/global";
-import NewsItem from "./NewsItem";
+import NewsItem from "../components/NewsItem";
 
 export default class NewsFeed extends PureComponent {
   constructor(props) {

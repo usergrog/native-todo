@@ -18,8 +18,16 @@ class Login extends Component {
 
   onPressLogin() {
     //console.log("username", this.state.username);
-    const { navigate } = this.props.navigation;
-    navigate("About", { name: "Jane" });
+    this.props.loginAndRedirect(this.state.username, this.state.password);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.userId) {
+      this.props.navigator.popToRoot({
+        animated: true,
+        animationType: "fade"
+      });
+    }
   }
 
   render() {

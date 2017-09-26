@@ -8,16 +8,22 @@ class Drawer extends Component {
     super(props);
     this._goToAbout = this._goToAbout.bind(this);
     this._goToAboutModal = this._goToAboutModal.bind(this);
-    this._openSearch = this._openSearch.bind(this);
+    this._openLogin = this._openLogin.bind(this);
+    this._doLogout = this._doLogout.bind(this);
     this._toggleDrawer = this._toggleDrawer.bind(this);
   }
 
-  _openSearch() {
+  _openLogin() {
     this._toggleDrawer();
-    this.props.navigator.showModal({
-      screen: "movieapp.Search",
-      title: "Search"
+    this.props.navigator.push({
+      screen: "owntodo.Login",
+      title: "Login"
     });
+  }
+
+  _doLogout() {
+    this._toggleDrawer();
+    this.props.signOut();
   }
 
   _goToAboutModal() {
@@ -41,6 +47,22 @@ class Drawer extends Component {
       side: "left",
       animated: true
     });
+  }
+
+  renderLoginSection() {
+    return this.props.userId ? (
+      <TouchableOpacity onPress={this._doLogout}>
+        <View style={styles.drawerListItem}>
+          <Text style={styles.drawerListItemText}>Logout</Text>
+        </View>
+      </TouchableOpacity>
+    ) : (
+      <TouchableOpacity onPress={this._openLogin}>
+        <View style={styles.drawerListItem}>
+          <Text style={styles.drawerListItemText}>Login</Text>
+        </View>
+      </TouchableOpacity>
+    );
   }
 
   render() {
@@ -71,12 +93,7 @@ class Drawer extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.drawerList}>
-          <TouchableOpacity onPress={this._openSearch}>
-            <View style={styles.drawerListItem}>
-              {iconSearch}
-              <Text style={styles.drawerListItemText}>Search</Text>
-            </View>
-          </TouchableOpacity>
+          {this.renderLoginSection()}
           <TouchableOpacity onPress={this._goToAbout}>
             <View style={styles.drawerListItem}>
               {iconMovies}

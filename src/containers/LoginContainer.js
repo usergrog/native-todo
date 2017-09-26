@@ -5,8 +5,9 @@ import * as actionCreators from "../actions";
 
 const mapStateToProps = state => {
   return {
-    username: state.username,
-    password: state.password
+    username: state.authReducer.username,
+    password: state.authReducer.password,
+    userId: state.authReducer.userId
   };
 };
 

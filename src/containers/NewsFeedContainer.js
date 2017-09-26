@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actionCreators from "../actions";
-import NewsFeed from "../components/NewsFeed";
+import NewsFeed from "../screens/NewsFeed";
 
 const mapStateToProps = state => {
   console.log("state.news", state.newsFeedReducer.news);
