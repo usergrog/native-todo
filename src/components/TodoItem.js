@@ -63,13 +63,13 @@ class TodoItem extends Component {
         <View style={{ flexDirection: "row" }}>
           <TouchableOpacity
             onPress={this._onPressUp.bind(this)}
-            style={styles.todoDeleteUpDown}
+            style={styles.todoUpDown}
           >
             <Icon name="arrow-drop-up" size={24} color="#000" />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={this._onPressDown.bind(this)}
-            style={styles.todoDeleteUpDown}
+            style={styles.todoUpDown}
           >
             <Icon name="arrow-drop-down" size={24} color="#000" />
           </TouchableOpacity>
@@ -88,7 +88,6 @@ class TodoItem extends Component {
 
 const styles = StyleSheet.create({
   todoItem: {
-    backgroundColor: "#dfd",
     borderColor: "gray",
     borderWidth: 0.5,
     flex: 1,
@@ -102,7 +101,7 @@ const styles = StyleSheet.create({
   },
   todoCheckBox: {
     paddingVertical: 10,
-    paddingHorizontal: 5
+    paddingHorizontal: 10
   },
   todoText: {
     paddingVertical: 10,
@@ -111,10 +110,10 @@ const styles = StyleSheet.create({
   },
   todoDeleteBtn: {
     paddingVertical: 10,
-    paddingHorizontal: 5
+    paddingHorizontal: 10
   },
-  todoDeleteUpDown: {
-    paddingVertical: 6,
+  todoUpDown: {
+    paddingVertical: 5,
     paddingHorizontal: 5
   }
 });
@@ -122,6 +121,7 @@ const styles = StyleSheet.create({
 TodoItem.propTypes = {
   toggleTodo: PropTypes.func.isRequired,
   todo: PropTypes.object.isRequired,
+  todos: PropTypes.array.isRequired,
   removeTodo: PropTypes.func.isRequired,
   changePriority: PropTypes.func.isRequired
 };
