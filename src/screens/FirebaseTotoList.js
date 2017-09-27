@@ -1,6 +1,15 @@
-import React, {Component} from "react";
-import {Button, FlatList, StyleSheet, Text, TextInput, View} from "react-native";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import {
+  Button,
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  View
+} from "react-native";
 import TodoItemContainer from "../containers/TodoItemContainer";
+import ProgressView from "../components/ProgressView";
 
 class FirebaseTodoList extends Component {
   state = {
@@ -13,7 +22,7 @@ class FirebaseTodoList extends Component {
     this.onPressAddTodo = this.onPressAddTodo.bind(this);
   }
 
-  renderLogin() {
+  static renderLogin() {
     return (
       <View>
         <Text>Please Login</Text>
@@ -33,16 +42,25 @@ class FirebaseTodoList extends Component {
     }
   }
 
+
+  componentWillReceiveProps(nextProps){
+    if (nextProps.selectedGroup) {
+      this.props.navigator.setTitle({
+        title: nextProps.selectedGroup.text
+      });
+    }
+  }
+
   _keyExtractor = (item, index) => index;
 
-  renderRow({ item }) {
+  static renderRow({ item }) {
     console.log("item", item);
     return <TodoItemContainer todo={item} />;
   }
 
   renderList() {
     return (
-      <View>
+      <View style={styles.rootView}>
         <View style={styles.addTodoBox}>
           <TextInput
             style={styles.editText}
@@ -61,8 +79,9 @@ class FirebaseTodoList extends Component {
           style={styles.flatList}
           data={this.props.todos}
           keyExtractor={this._keyExtractor}
-          renderItem={this.renderRow}
+          renderItem={FirebaseTodoList.renderRow}
         />
+        {this.props.showProgress && <ProgressView />}
       </View>
     );
   }
@@ -71,7 +90,7 @@ class FirebaseTodoList extends Component {
     if (this.props.userId) {
       return this.renderList();
     } else {
-      return this.renderLogin();
+      return FirebaseTodoList.renderLogin();
     }
   }
 }
@@ -93,7 +112,23 @@ const styles = StyleSheet.create({
   addTodoButton: {
     flex: 1
   },
-  flatList: {}
+  flatList: {},
+  rootView: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  }
 });
+
+FirebaseTodoList.propTypes = {
+  userId: PropTypes.string,
+  todos: PropTypes.array,
+  addTodo: PropTypes.func.isRequired,
+  showError: PropTypes.func.isRequired,
+  showProgress: PropTypes.boolean,
+  navigator: PropTypes.object.isRequired
+};
 
 export default FirebaseTodoList;
