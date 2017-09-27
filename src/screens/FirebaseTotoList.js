@@ -21,6 +21,10 @@ class FirebaseTodoList extends Component {
     super(props);
     this.renderList = this.renderList.bind(this);
     this.onPressAddTodo = this.onPressAddTodo.bind(this);
+
+    console.ignoredYellowBox = [
+      'Setting a timer'
+    ];
   }
 
   static renderLogin() {
@@ -83,7 +87,7 @@ class FirebaseTodoList extends Component {
           keyExtractor={this._keyExtractor}
           renderItem={FirebaseTodoList.renderRow}
         />
-        {this.props.showProgress && <ProgressView />}
+        {this.props.visibleProgress && <ProgressView />}
       </View>
     );
   }
@@ -130,7 +134,7 @@ FirebaseTodoList.propTypes = {
   todos: PropTypes.array,
   addTodo: PropTypes.func.isRequired,
   showError: PropTypes.func.isRequired,
-  showProgress: PropTypes.boolean,
+  visibleProgress: PropTypes.bool,
   navigator: PropTypes.object.isRequired,
   selectedGroup: PropTypes.object
 };

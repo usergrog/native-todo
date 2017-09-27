@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, View, Text, TextInput, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
+import ErrorView from "../components/ErrorView";
 
 class Login extends Component {
   constructor(props) {
@@ -34,16 +35,22 @@ class Login extends Component {
     return (
       <View style={styles.loginBox}>
         <Text style={{ marginBottom: 10 }}>Login</Text>
+        {this.props.appError && <ErrorView appError={this.props.appError}/>}
         <TextInput
           style={styles.editBox}
           onChangeText={username => this.setState({ username })}
           placeholder="username"
+          keyboardType="email-address"
+          multiline={false}
           value={this.state.text}
         />
         <TextInput
           style={[styles.editBox, { marginTop: 10 }]}
           onChangeText={password => this.setState({ password })}
           placeholder="password"
+          multiline={false}
+          returnKeyType="send"
+          onSubmitEditing={this.onPressLogin}
           secureTextEntry={true}
           value={this.state.text}
         />
@@ -73,5 +80,15 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 });
+
+Login.propTypes = {
+  userId: PropTypes.string,
+  appError: PropTypes.string,
+  showError: PropTypes.func.isRequired,
+  showProgress: PropTypes.boolean,
+  navigator: PropTypes.object.isRequired,
+  selectedGroup: PropTypes.object
+};
+
 
 export default Login;

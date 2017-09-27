@@ -7,7 +7,8 @@ const mapStateToProps = state => {
   return {
     username: state.authReducer.username,
     password: state.authReducer.password,
-    userId: state.authReducer.userId
+    userId: state.authReducer.userId,
+    appError: state.alertReducer.appError
   };
 };
 

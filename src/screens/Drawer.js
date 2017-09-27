@@ -76,12 +76,15 @@ class Drawer extends Component {
 
   _addGroup() {
     this._toggleDrawer();
-    this.props.navigator.push({screen: 'owntodo.AddGroup', title: 'Add group'})
+    this.props.navigator.push({
+      screen: "owntodo.AddGroup",
+      title: "Add group"
+    });
   }
 
   renderGroupsSection() {
     console.log("oopsGroups", this.props.groups);
-    return (
+    return this.props.userId ? (
       <View>
         {this.props.groups &&
           this.props.groups.map(group => (
@@ -107,7 +110,7 @@ class Drawer extends Component {
           </View>
         </TouchableOpacity>
       </View>
-    );
+    ) : null;
   }
 
   icon = (iconName, color = "#9F9F9F") => (

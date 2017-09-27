@@ -8,7 +8,7 @@ const mapStateToProps = state => {
     todos: state.todoReducer.todos,
     selectedGroup: state.todoReducer.selectedGroup,
     userId: state.authReducer.userId,
-    showProgress: state.alertReducer.showProgress,
+    visibleProgress: state.alertReducer.visibleProgress,
     appError: state.alertReducer.appError
   };
 };

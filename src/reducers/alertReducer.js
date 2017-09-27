@@ -1,8 +1,8 @@
 import {RECEIVED_GROUPS, RECEIVED_TODOS} from "../actions/todoActions";
 
 const initialState = {
-    appError: '',
-    showProgress: false
+    appError: undefined,
+    visibleProgress: false
 }
 
 export const alertReducer = (state = initialState, action) => {
@@ -10,7 +10,7 @@ export const alertReducer = (state = initialState, action) => {
         case 'LOGIN_ERROR':
         case 'SHOW_ERROR':
             return Object.assign({}, state, {
-                showProgress: false,
+              visibleProgress: false,
                 appError: action.appError
             })
         case 'HIDE_ERROR':
@@ -19,19 +19,19 @@ export const alertReducer = (state = initialState, action) => {
             })
         case 'SHOW_PROGRESS':
             return Object.assign({}, state, {
-                showProgress: true
+              visibleProgress: true
             })
         case 'LOGIN':
         case 'LOGOUT':
         case RECEIVED_TODOS:
         case RECEIVED_GROUPS:
             return Object.assign({}, state, {
-                showProgress: false,
+              visibleProgress: false,
                 appError: undefined
             })
         case 'HIDE_PROGRESS':
             return Object.assign({}, state, {
-                showProgress: false,
+              visibleProgress: false,
             })
         default:
             return state
