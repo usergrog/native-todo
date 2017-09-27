@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, TextInput, Button } from "react-native";
-import * as PropTypes from "react-native";
+import PropTypes from "prop-types";
 
 export class AddGroup extends React.Component {
   constructor(props) {
@@ -23,17 +23,16 @@ export class AddGroup extends React.Component {
           <TextInput
             style={styles.editText}
             onChangeText={groupTitle => this.setState({ groupTitle })}
-            placeholder="Todo Title"
+            placeholder="Group Title"
             value={this.state.groupTitle}
           />
-          <Button
-            onPress={this.onPressAddGroup}
-            style={styles.addTodoButton}
-            title="Add"
-            color="#841584"
-          />
-
-          <Text>AddGroup</Text>
+          <View style={styles.addGroupButton}>
+            <Button
+              onPress={this.onPressAddGroup}
+              title="Add group"
+              color="#841584"
+            />
+          </View>
         </View>
       </View>
     );
@@ -57,14 +56,25 @@ export class AddGroup extends React.Component {
   }
 }
 
-// AddGroup.propTypes = {
-//   userId: PropTypes.string,
-//   addGroup: PropTypes.func.isRequired,
-//   showError: PropTypes.func.isRequired,
-//   showProgress: PropTypes.boolean,
-//   navigator: PropTypes.object.isRequired
-// };
+AddGroup.propTypes = {
+  userId: PropTypes.string.isRequired,
+  addGroup: PropTypes.func.isRequired,
+  showError: PropTypes.func.isRequired,
+  showProgress: PropTypes.boolean,
+  navigator: PropTypes.object.isRequired
+};
 
 const styles = StyleSheet.create({
-  editText: {}
+  editText: {
+    height: 40,
+    width: 300,
+    padding: 4,
+    borderColor: "gray",
+    borderWidth: 1
+  },
+  addGroupButton: {
+    width: 200,
+    padding: 4,
+    alignSelf: 'center'
+  }
 });

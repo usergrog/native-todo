@@ -5,8 +5,6 @@ import About from "./screens/About";
 import LoginContainer from "./containers/LoginContainer";
 import FirebaseTodoContainer from "./containers/FirebaseTodoContainer";
 import AddGroupContainer from "./containers/AddGroupContainer";
-// import Movie from './modules/movies/Movie';
-// import Search from './modules/movies/Search';
 
 export function registerScreens(store, Provider) {
   Navigation.registerComponent(
