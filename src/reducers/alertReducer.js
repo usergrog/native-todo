@@ -15,7 +15,7 @@ export const alertReducer = (state = initialState, action) => {
             })
         case 'HIDE_ERROR':
             return Object.assign({}, state, {
-                appError: ''
+                appError: undefined
             })
         case 'SHOW_PROGRESS':
             return Object.assign({}, state, {
@@ -27,7 +27,7 @@ export const alertReducer = (state = initialState, action) => {
         case RECEIVED_GROUPS:
             return Object.assign({}, state, {
                 showProgress: false,
-                appError: ''
+                appError: undefined
             })
         case 'HIDE_PROGRESS':
             return Object.assign({}, state, {

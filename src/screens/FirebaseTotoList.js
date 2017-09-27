@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import TodoItemContainer from "../containers/TodoItemContainer";
 import ProgressView from "../components/ProgressView";
+import ErrorView from "../components/ErrorView";
 
 class FirebaseTodoList extends Component {
   state = {
@@ -61,6 +62,7 @@ class FirebaseTodoList extends Component {
   renderList() {
     return (
       <View style={styles.rootView}>
+        {this.props.appError && <ErrorView appError={this.props.appError}/>}
         <View style={styles.addTodoBox}>
           <TextInput
             style={styles.editText}
@@ -124,11 +126,13 @@ const styles = StyleSheet.create({
 
 FirebaseTodoList.propTypes = {
   userId: PropTypes.string,
+  appError: PropTypes.string,
   todos: PropTypes.array,
   addTodo: PropTypes.func.isRequired,
   showError: PropTypes.func.isRequired,
   showProgress: PropTypes.boolean,
-  navigator: PropTypes.object.isRequired
+  navigator: PropTypes.object.isRequired,
+  selectedGroup: PropTypes.object
 };
 
 export default FirebaseTodoList;

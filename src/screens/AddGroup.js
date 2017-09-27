@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet, TextInput, Button } from "react-native";
 import PropTypes from "prop-types";
+import ErrorView from "../components/ErrorView";
 
 export class AddGroup extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export class AddGroup extends React.Component {
           alignItems: "center"
         }}
       >
+        {this.props.appError && <ErrorView appError={this.props.appError}/>}
         <View>
           <TextInput
             style={styles.editText}
@@ -51,7 +53,7 @@ export class AddGroup extends React.Component {
         animationType: "fade"
       });
     } else {
-      this.props.showError("Please input title for todo");
+      this.props.showError("Please input title for group");
     }
   }
 }
@@ -61,7 +63,8 @@ AddGroup.propTypes = {
   addGroup: PropTypes.func.isRequired,
   showError: PropTypes.func.isRequired,
   showProgress: PropTypes.boolean,
-  navigator: PropTypes.object.isRequired
+  navigator: PropTypes.object.isRequired,
+  appError: PropTypes.string
 };
 
 const styles = StyleSheet.create({

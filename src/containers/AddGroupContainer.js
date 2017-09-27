@@ -5,7 +5,8 @@ import {AddGroup} from "../screens/AddGroup";
 
 const mapStateToProps = (state) => {
   return {
-    userId: state.authReducer.userId
+    userId: state.authReducer.userId,
+    appError: state.alertReducer.appError
   };
 };
 
