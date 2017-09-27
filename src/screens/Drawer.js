@@ -12,6 +12,7 @@ class Drawer extends Component {
     this._openLogin = this._openLogin.bind(this);
     this._doLogout = this._doLogout.bind(this);
     this._toggleDrawer = this._toggleDrawer.bind(this);
+    this._addGroup = this._addGroup.bind(this);
     this.icon = this.icon.bind(this);
   }
 
@@ -68,9 +69,14 @@ class Drawer extends Component {
     );
   }
 
-  _selectGroup(group){
+  _selectGroup(group) {
     this._toggleDrawer();
-    this.props.selectGroupAndFetchTodos(group)
+    this.props.selectGroupAndFetchTodos(group);
+  }
+
+  _addGroup() {
+    this._toggleDrawer();
+    this.props.navigator.push({screen: 'owntodo.AddGroup', title: 'Add group'})
   }
 
   renderGroupsSection() {
@@ -79,16 +85,27 @@ class Drawer extends Component {
       <View>
         {this.props.groups &&
           this.props.groups.map(group => (
-            <TouchableOpacity key={group.id} onPress={() => this._selectGroup(group)}>
+            <TouchableOpacity
+              key={group.id}
+              onPress={() => this._selectGroup(group)}
+            >
               <View style={styles.drawerListSubItem}>
                 {this.icon(
                   "grade",
-                  this.props.selectedGroup.id === group.id ? "#0000ff" : "#9F9F9F"
+                  this.props.selectedGroup.id === group.id
+                    ? "#0000ff"
+                    : "#9F9F9F"
                 )}
                 <Text style={styles.drawerListSubItemText}>{group.text}</Text>
               </View>
             </TouchableOpacity>
           ))}
+        <TouchableOpacity onPress={this._addGroup}>
+          <View style={styles.drawerListSubItem}>
+            {this.icon("add-box", "#9F9F9F")}
+            <Text style={styles.drawerListSubItemText}>Add group</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
